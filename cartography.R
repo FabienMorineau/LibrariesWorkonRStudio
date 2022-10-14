@@ -44,7 +44,33 @@ typoLayer(x = lycee, var = "note")
 
 propSymbolsLayer(x = lycee, var = "note", inches = 0.1, symbols = "circle")
 
-tiles <- getTiles(x = lycee, var = "note")
+
+"OpenStreetMap Basemap 'see rosm package"
+tiles <- getTiles(x = lycee, type = "osm")
+tilesLayer(tiles)
+
+"Isopleth (see SpatialPosition package)"
+
+install.packages("potential")
+library(SpatialPosition)
+library(potential)
+smoothLayer(x = lycee, var = "note",
+            typefct = "exponential", span = 500,
+            beta = 2)
+
+
+"Discontinuities"
+
+discLayer(x = lycee.borders, df = lycee,
+          var = "myvar", threshold = 0.5)
+
+
+
+
+
+
+
+
 
 
 
